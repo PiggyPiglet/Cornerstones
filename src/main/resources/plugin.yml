@@ -1,0 +1,5 @@
+name: Cornerstones
+version: 1.0.0
+api-version: "1.19"
+author: PiggyPiglet
+main: me.piggypiglet.cornerstones.boot.CornerstonesBootstrap

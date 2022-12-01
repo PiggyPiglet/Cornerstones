@@ -1,0 +1,23 @@
+plugins {
+    id "java"
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+}
+
+apply from: "https://cdn.piggypiglet.me/gradle/spigot.gradle"
+
+group "me.piggypiglet"
+version "1.0.0"
+
+sourceCompatibility = JavaVersion.VERSION_17
+
+dependencies {
+    spigot "1.19.2-R0.1"
+
+    implementation "com.google.inject:guice:5.1.0"
+    
+    compileOnly "org.jetbrains:annotations:23.0.0"
+}
+
+shadowJar {
+    destinationDirectory.set(file("server/plugins"))
+}
