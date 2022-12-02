@@ -7,10 +7,13 @@ import com.google.gson.InstanceCreator;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
+import com.google.inject.util.Types;
 import me.piggypiglet.cornerstones.file.annotations.FileData;
 import me.piggypiglet.cornerstones.file.deserialization.FileDeserializer;
 import me.piggypiglet.cornerstones.file.deserialization.YamlFileDeserializer;
+import me.piggypiglet.cornerstones.file.deserialization.gson.MaterialSetDeserializer;
 import me.piggypiglet.cornerstones.file.exceptions.FileLoadException;
+import org.bukkit.Material;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -34,7 +37,7 @@ public final class DeserializationManager {
     private final Gson gson;
 
     @Inject
-    public DeserializationManager(@NotNull @Named("files") final Map<Class<?>, FileData> fileData, @NotNull@Named("files") final Map<Class<?>, Object> files) {
+    public DeserializationManager(@NotNull @Named("files") final Map<Class<?>, FileData> fileData, @NotNull @Named("files") final Map<Class<?>, Object> files) {
         this.fileData = fileData;
 
         final AtomicReference<GsonBuilder> builder = new AtomicReference<>(new GsonBuilder()

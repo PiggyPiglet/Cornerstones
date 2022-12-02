@@ -11,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 // ------------------------------
 // Copyright (c) PiggyPiglet 2022
@@ -44,7 +43,17 @@ public final class CornerstonePopulator extends BlockPopulator {
                 final int z = chunkZ * 16 + j;
 
                 for (int y = maxHeight; y > minHeight; --y) {
-                    if (region.getBlockState(x, y, z).getType() == Material.AIR) {
+                    final Material mat = region.getBlockState(x, y, z).getType();
+
+                    if (config.structureMaterials().contains(mat)) {
+                        return;
+                    }
+                }
+
+                for (int y = maxHeight; y > minHeight; --y) {
+                    final Material mat = region.getBlockState(x, y, z).getType();
+
+                    if (!config.surfaceMaterials().contains(mat)) {
                         continue;
                     }
 
