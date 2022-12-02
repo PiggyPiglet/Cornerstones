@@ -5,9 +5,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 // ------------------------------
@@ -24,7 +27,7 @@ public final class FileUtils {
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     @NotNull
-    public static File createFile(@NotNull final String internalPath, @NotNull final String externalPath) throws IOException {
+    public static File create(@NotNull final String internalPath, @NotNull final String externalPath) throws IOException {
         final File file = new File(externalPath);
 
         if (file.exists()) return file;
@@ -42,7 +45,12 @@ public final class FileUtils {
     }
 
     @NotNull
-    public static String readFile(@NotNull final File file) throws IOException {
+    public static String read(@NotNull final File file) throws IOException {
         return String.join("\n", Files.readAllLines(Paths.get(file.toURI())));
+    }
+
+    public static void write(@NotNull final String path, @NotNull final String content) throws IOException {
+        Files.write(Paths.get(path), Arrays.asList(LINE_DELIMITER.split(content)), StandardCharsets.UTF_8,
+                StandardOpenOption.TRUNCATE_EXISTING);
     }
 }

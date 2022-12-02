@@ -55,10 +55,10 @@ public final class FileDataRegisterable extends Registerable {
             String externalPath = annotation.externalPath();
 
             if (externalPath.isEmpty()) {
-                externalPath = clazz.getSimpleName().toLowerCase() + ".yml";
+                externalPath = internalPath;
             }
 
-            externalPath = dataDirectory + '/' + externalPath;
+            externalPath = dataDirectory + (externalPath.startsWith("/") ? "" : '/') + externalPath;
 
             fileData.put(clazz, new FileData(internalPath, externalPath));
         }

@@ -6,6 +6,7 @@ import me.piggypiglet.cornerstones.boot.exceptions.BootstrapHaltException;
 import me.piggypiglet.cornerstones.boot.framework.Registerable;
 import me.piggypiglet.cornerstones.events.ListenersRegisterable;
 import me.piggypiglet.cornerstones.file.boot.FileDataRegisterable;
+import me.piggypiglet.cornerstones.file.boot.GsonRegisterable;
 import me.piggypiglet.cornerstones.file.boot.InitialDeserializationRegisterable;
 import me.piggypiglet.cornerstones.guice.ExceptionalInjector;
 import me.piggypiglet.cornerstones.guice.modules.InitialModule;
@@ -22,6 +23,7 @@ import java.util.concurrent.atomic.AtomicReference;
 public final class CornerstonesBootstrap extends JavaPlugin {
     private static final List<Class<? extends Registerable>> REGISTERABLES = List.of(
             FileDataRegisterable.class,
+            GsonRegisterable.class,
             InitialDeserializationRegisterable.class,
             ListenersRegisterable.class,
             PopulatorRegisterable.class

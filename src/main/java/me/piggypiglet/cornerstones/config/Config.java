@@ -2,8 +2,9 @@ package me.piggypiglet.cornerstones.config;
 
 import com.google.gson.annotations.JsonAdapter;
 import com.google.inject.Singleton;
+import me.piggypiglet.cornerstones.config.deserialization.MaterialDeserializer;
 import me.piggypiglet.cornerstones.file.annotations.File;
-import me.piggypiglet.cornerstones.file.deserialization.gson.MaterialSetDeserializer;
+import me.piggypiglet.cornerstones.config.deserialization.MaterialSetDeserializer;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,12 +18,18 @@ import java.util.Set;
 @Singleton @File
 public final class Config {
     private double chance;
+    @JsonAdapter(MaterialDeserializer.class) private Material cornerstoneMaterial;
     private List<String> worlds;
     @JsonAdapter(MaterialSetDeserializer.class) private Set<Material> surfaceMaterials;
     @JsonAdapter(MaterialSetDeserializer.class) private Set<Material> structureMaterials;
 
     public double chance() {
         return chance;
+    }
+
+    @NotNull
+    public Material cornerstoneMaterial() {
+        return cornerstoneMaterial;
     }
 
     @NotNull

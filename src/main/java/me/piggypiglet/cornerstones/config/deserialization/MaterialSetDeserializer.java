@@ -1,4 +1,4 @@
-package me.piggypiglet.cornerstones.file.deserialization.gson;
+package me.piggypiglet.cornerstones.config.deserialization;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
