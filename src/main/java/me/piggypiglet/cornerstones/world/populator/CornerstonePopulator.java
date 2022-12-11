@@ -1,6 +1,7 @@
 package me.piggypiglet.cornerstones.world.populator;
 
 import com.google.inject.Inject;
+import me.piggypiglet.cornerstones.CornerstoneManager;
 import me.piggypiglet.cornerstones.config.Config;
 import me.piggypiglet.cornerstones.storage.CornerstoneStorage;
 import org.bukkit.Material;
@@ -19,12 +20,12 @@ import java.util.Random;
 // ------------------------------
 public final class CornerstonePopulator extends BlockPopulator {
     private final Config config;
-    private final CornerstoneStorage storage;
+    private final CornerstoneManager manager;
 
     @Inject
-    public CornerstonePopulator(@NotNull final Config config, @NotNull final CornerstoneStorage storage) {
+    public CornerstonePopulator(@NotNull final Config config, @NotNull final CornerstoneManager manager) {
         this.config = config;
-        this.storage = storage;
+        this.manager = manager;
     }
 
     @Override
@@ -86,6 +87,6 @@ public final class CornerstonePopulator extends BlockPopulator {
             }
         }
 
-        storage.register(worldInfo.getUID(), chunkX, chunkZ);
+        manager.register(worldInfo.getUID(), chunkX, chunkZ);
     }
 }
